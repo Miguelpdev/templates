@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Mis Templates</title>
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 flex items-center justify-between">
+      <div class="text-white text-2xl font-semibold">Sth</div>
+      <div class="flex items-center">
+        <input
+          class="mr-2 p-2 rounded border border-gray-400"
+          type="text"
+          placeholder="Buscar"
+        />
+        <button class="bg-green-500 text-white p-2 rounded">Buscar</button>
+      </div>
+      <div class="flex items-center text-gray-300">
+        <a href="#" class="mr-4">Carrito</a>
+        <a href="#">Login</a>
+      </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="bg-gray-200 text-center py-16">
+      <h1 class="text-4xl font-bold mb-4">Bienvenido a Templates</h1>
+      <p class="text-xl">Repositorio de free templates</p>
+    </section>
+
+    <!-- Templates Section -->
+    <div class="container mx-auto p-6">
+      <div
+        id="template-list"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- Los templates se cargarán aquí -->
+      </div>
+    </div>
+
+    <script>
+      // Función para cargar el archivo JSON y actualizar la lista de templates
+      async function loadTemplates() {
+        try {
+          const response = await fetch("data.json");
+          const data = await response.json();
+          const templateList = document.getElementById("template-list");
+
+          data.templates.forEach((template) => {
+            const card = document.createElement("div");
+            card.className = "bg-white rounded-lg shadow-md overflow-hidden";
+
+            const cardImage = document.createElement("img");
+            cardImage.className = "w-full h-48 object-cover";
+            cardImage.src = template.image;
+            cardImage.alt = template.name;
+
+            const cardBody = document.createElement("div");
+            cardBody.className = "p-4";
+
+            const cardTitle = document.createElement("h2");
+            cardTitle.className = "text-xl font-bold mb-2";
+            cardTitle.textContent = template.name;
+
+            const cardLink = document.createElement("a");
+            cardLink.href = template.path;
+            cardLink.className =
+              "bg-green-500 text-white p-2 rounded block text-center";
+            cardLink.textContent = "Ver producto";
+
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardLink);
+            card.appendChild(cardImage);
+            card.appendChild(cardBody);
+            templateList.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error al cargar el archivo JSON:", error);
+        }
+      }
+
+      // Cargar los templates cuando se cargue la página
+      window.onload = loadTemplates;
+    </script>
+  </body>
+</html>

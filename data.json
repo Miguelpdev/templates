@@ -1,0 +1,24 @@
+{
+  "templates": [
+    {
+      "name": "Shofy Template",
+      "path": "shofy-template/index.html",
+      "image": "images/shofy.webp"
+    },
+    {
+      "name": "Food Template",
+      "path": "food-park-template/index.html",
+      "image": "images/food-park.webp"
+    },
+    {
+      "name": "JS Template 1",
+      "path": "js-templates/template1.js",
+      "image": "https://via.placeholder.com/500x325"
+    },
+    {
+      "name": "Lezato Template",
+      "path": "js-templates/template1.js",
+      "image": "https://via.placeholder.com/500x325"
+    }
+  ]
+}
